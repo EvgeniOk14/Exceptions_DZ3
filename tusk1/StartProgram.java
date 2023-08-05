@@ -8,19 +8,28 @@ public class StartProgram
     {
         InfoTablo infoTablo = new InfoTablo();
         infoTablo.infotablo();
-        FileScanner fileScanner = new FileScanner();
+//      FileScanner fileScanner = new FileScanner();
         PasswordVerifier passwordVerifier = new PasswordVerifier();
-        try {
-            try {
-                try {
-                    passwordVerifier.checkPassLength(fileScanner.fileScanner());
-                } catch (NotUpperCaseException e) {
+        try
+        {
+            try
+            {
+                try
+                {
+                    passwordVerifier.checkPassLength();
+                }
+                catch (NotUpperCaseException e)
+                {
                     System.out.println("ошибка: " + e.getMessage());;
                 }
-            } catch (NotDigitException e) {
+            }
+            catch (NotDigitException e)
+            {
                 System.out.println("ошибка: " + e.getMessage());;
             }
-        } catch (LengthPasswordException e) {
+        }
+        catch (LengthPasswordException e)
+        {
             System.out.println("Ошибка: " + e.getMessage());;
         }
     }
