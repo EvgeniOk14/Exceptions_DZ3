@@ -4,33 +4,44 @@ import Exceptions.NotUpperCaseException;
 
 public class StartProgram
 {
+    private boolean flag = true;
     public void startProgram()
     {
         InfoTablo infoTablo = new InfoTablo();
         infoTablo.infotablo();
-//      FileScanner fileScanner = new FileScanner();
-        PasswordVerifier passwordVerifier = new PasswordVerifier();
-        try
+        while (flag)
         {
+            System.out.println("Ведите пароль: ");
+            FileScanner fs = new FileScanner();
+            String password = fs.fileScanner();
+            PasswordVerifier passwordVerifier = new PasswordVerifier();
             try
             {
                 try
                 {
-                    passwordVerifier.checkPassLength();
+                    try
+                    {
+                       passwordVerifier.checkPassLength(password);
+                        System.out.println("Пароль принят, доступ разрешён! ");
+                        flag = false;
+                        break;
+                    }
+                    catch (NotUpperCaseException e)
+                    {
+                        System.out.println("ошибка: " + e.getMessage());
+
+                    }
                 }
-                catch (NotUpperCaseException e)
+                catch (NotDigitException e)
                 {
-                    System.out.println("ошибка: " + e.getMessage());;
+                    System.out.println("ошибка: " + e.getMessage());
+
                 }
             }
-            catch (NotDigitException e)
+            catch (LengthPasswordException e)
             {
-                System.out.println("ошибка: " + e.getMessage());;
+                System.out.println("Ошибка: " + e.getMessage());
             }
-        }
-        catch (LengthPasswordException e)
-        {
-            System.out.println("Ошибка: " + e.getMessage());;
         }
     }
 }

@@ -4,13 +4,7 @@ import Exceptions.NotUpperCaseException;
 
 public class PasswordVerifier
 {
-
-    public void checkPassLength() throws LengthPasswordException, NotDigitException, NotUpperCaseException {
-
-        System.out.println("Введите пароль: ");
-        FileScanner sc = new FileScanner();
-        String password = sc.fileScanner();
-        boolean passLength = false;
+    public void checkPassLength(String password) throws LengthPasswordException, NotDigitException, NotUpperCaseException {
         if (password.length() > 8)
         {
             boolean number = false;
@@ -21,7 +15,6 @@ public class PasswordVerifier
                 {
                     number = true;
                 }
-
                 if (Character.isUpperCase(password.charAt(i)))
                 {
                     upper = true;
@@ -30,23 +23,20 @@ public class PasswordVerifier
                 {
                     break;
                 }
-
             }
-
-
             if (!number)
-            {
-                throw new NotDigitException("Пароль не содержит ни одного числа! ");
-            }
+                {
+                    throw new NotDigitException("Пароль не содержит ни одного числа!\n ");
+                }
             if (!upper)
-            {
-                throw new NotUpperCaseException("Пароль не содержит ни одной заглавной буквы! ");
-            }
+                {
+                    throw new NotUpperCaseException("Пароль не содержит ни одной заглавной буквы!\n ");
+                }
         }
             else
-            {
-                throw new LengthPasswordException("Длина пароля меньше допустимого! ");
-            }
+                {
+                    throw new LengthPasswordException("Длина пароля меньше допустимого!\n ");
+                }
         System.out.println("Поздравляю! Вы ввели верный пароль! ");
     }
 

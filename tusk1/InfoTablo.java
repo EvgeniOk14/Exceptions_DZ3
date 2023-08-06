@@ -16,6 +16,5 @@ public class InfoTablo
                 то: 
                  
                 """);
-//        System.out.println("Введите пароль: ");
     }
 }
